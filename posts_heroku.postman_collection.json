@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "8b50246c-f24c-4957-9edd-999af3350631",
+		"name": "hexschool posts heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[測試] 擷取路由",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得 所有貼文清單",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除 所有貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增 貼文",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"DAT\",\n    \"tags\": [\"test\"],\n    \"type\": \"person\",\n    \"content\": \"測試發文\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除 單筆貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts/626d1015dd4d30c1bab3a727",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"626d1015dd4d30c1bab3a727"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯 單筆貼文",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"editPost\",\n    \"tags\": [\"edit\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts/626d1035dd4d30c1bab3a72c",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"626d1035dd4d30c1bab3a72c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
