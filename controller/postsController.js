@@ -1,5 +1,5 @@
 const Posts = require('../model/postsModel'); // model Post
-const resHandle = require('./resHandle');
+const resHandle = require('../service/resHandle');
 
 async function createPost(req, res, next) {
     const post = req.body;
@@ -58,7 +58,12 @@ async function updatePost(req, res, next) {
             return resHandle.error400(res, 'content不能為空白');
         }
         const posts = await Posts.findByIdAndUpdate(id, post);
-        resHandle.success(res, posts);
+        if(posts) {
+            resHandle.success(res, posts);
+        }
+        else {
+            resHandle.error400(res, '沒有此id');
+        }
     }
     catch(error) {
         resHandle.error500(res, String(error));
