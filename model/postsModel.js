@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const postSchema = mongoose.Schema(
     {
-        name: {
-            type: String,
-            required: [true, '貼文姓名未填寫']
+        user: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'users',
+            required: [true, "使用者資訊未填寫"]
         },
         tags: [
             {

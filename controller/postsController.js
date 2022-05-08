@@ -1,12 +1,13 @@
-const Posts = require('../model/postsModel'); // model Post
+const Posts = require('../model/postsModel');
+const Users = require('../model/usersModel'); 
 const resHandle = require('../service/resHandle');
 
 async function createPost(req, res, next) {
     const post = req.body;
     console.log(req.body)
     try{
-        if( !(post.name && post.tags[0] && post.type && post.content) ) {
-            return resHandle.error400(res, '未填必填欄位(name, tags, type, content)');
+        if( !(post.user && post.tags[0] && post.type && post.content) ) {
+            return resHandle.error400(res, '未填必填欄位(user, tags, type, content)');
         }
         const posts = await Posts.create(post);
         resHandle.success(res, posts);
@@ -18,8 +19,36 @@ async function createPost(req, res, next) {
 
 async function getAllPosts(req, res, next) {
     try{
-        const posts = await Posts.find({});
-        resHandle.success(res, posts);
+        console.log(req.query)
+        let { keyword, sortby, s: size = 10, p: page = 1, asc = 0, all } = req.query;
+        let filter = keyword ? { content: new RegExp(keyword) } : {} ;
+        sort = sortby === 'datetime_pub' ? { createAt: asc ? 1 : -1 } : {} ;
+        page = page > 0 ? page : 1;
+
+        const count = await Posts.find(filter).count();
+        if(all == 1) {
+            size = count;
+            page = 1;
+        }
+        let skip = size * ( page - 1 );
+
+        const posts = await Posts.find(filter).sort(sort).skip(skip).limit(size)
+            .populate({
+                path: 'user', // 定義post schema中需關聯之欄位
+                select: 'userName avatar'
+            });
+
+        let postsData = posts.map((item) => {
+            return {
+                postId: item._id,
+                user: item.user,
+                content: item.content,
+                image: item.image,
+                datetime_pub: item.createAt
+            }
+        });
+        let paylaod = { count, size, page, posts: postsData };
+        resHandle.success(res, paylaod);
     }
     catch(error) {
         resHandle.error500(res, error);
