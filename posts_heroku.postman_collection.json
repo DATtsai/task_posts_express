@@ -132,7 +132,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/posts/626d1015dd4d30c1bab3a727",
+					"raw": "https://thawing-plains-53186.herokuapp.com/post/626d1015dd4d30c1bab3a727",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -140,7 +140,7 @@
 						"com"
 					],
 					"path": [
-						"posts",
+						"post",
 						"626d1015dd4d30c1bab3a727"
 					]
 				}
