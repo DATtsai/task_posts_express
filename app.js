@@ -8,6 +8,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
 
+const {uncaughtException, unhandledRejection} = require('./service/processHandle');
+const {resErrorDev, resErrorProd} = require('./service/resHandle');
+
+process.on('uncaughtException', uncaughtException); // 程式crash的錯誤處理，紀錄錯誤後關閉process
+
 const connectMongoDB = require('./connection/mongoDb');
 connectMongoDB();
 
@@ -30,18 +35,26 @@ app.use('/', postsRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   // next(createError(404));
-  res.status(404).send('404頁面，找不到您的網頁');
+  res.status(404).send({status: 'fail', message: '404頁面，找不到該路由'});
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  err.statusCode = err.statusCode || 500;
+  // development環境
+  if(process.env.NODE_ENV === 'dev') { 
+    return resErrorDev(res, err);
+  }
+  // prodcution環境
+  // 特定錯誤類型，可重新定義預期錯誤資訊
+  if(err.name === 'ValidationError') {
+    err.message = '欄位填寫錯誤，請重新檢查必填與格式！'
+    err.isOperational = true;
+    return resErrorProd(res, err);
+  }
+  return resErrorProd(res, err);
 });
+
+process.on('unhandledRejection', unhandledRejection); // 補抓程式中所有Promise錯誤但未被處理到的catch
 
 module.exports = app;
