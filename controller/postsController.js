@@ -5,12 +5,13 @@ const resHandle = require('../service/resHandle');
 async function createPost(req, res, next) {
     const post = req.body;
     console.log(req.body)
-    if( !(post.user && post.tags[0] && post.type && post.content) ) {
-        resHandle.appError(400, '未填必填欄位(user, tags, type, content)', next);
+    if(!post.user) { post.user = req.user.id }
+    if( !(post.tags[0] && post.type && post.content) ) {
+        resHandle.appError(400, '未填必填欄位(tags, type, content)', next);
     }
     const user = await Users.findById(post.user).exec()
         .catch(error => resHandle.appError(400, '使用者不存在', next));
-    const posts =  await Posts.create(post);
+    const posts = await Posts.create(post);
     console.log(posts)
     resHandle.success(res, posts);
 }

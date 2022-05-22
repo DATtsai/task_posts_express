@@ -24,12 +24,10 @@ const postSchema = mongoose.Schema(
         createAt: {
             type: Date,
             default: Date.now,
-            select: false
         },
         updateAt: {
             type: Date,
             default: Date.now,
-            select: false
         },
         content: {
             type: String,
@@ -40,8 +38,11 @@ const postSchema = mongoose.Schema(
             default: 0
         },
         comments:{
-            type: Number,
-            default: 0
+            type: [{
+                user: {type: mongoose.Schema.ObjectId, ref: 'users', required: [true, '使用者資訊未填寫']}, 
+                message: {type: String, required: [true, '留言不得為白']}
+            }],
+            default: []
         },
     },
     {
