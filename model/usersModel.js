@@ -16,6 +16,36 @@ const userSchema = mongoose.Schema(
             type: String,
             default: 'https://randomuser.me/api/portraits/lego/3.jpg'
         },
+        password: {
+            type: String,
+            required: [true, '尚未設定密碼'],
+            select: false
+        },
+        gender: {
+            type: String,
+            enum: ['female', 'male', 'notAccess'],
+            default: 'notAccess'
+        },
+        follow: {
+            type: [{id: {type: String}, datetime_update: {type: Date, default: Date.now}}],
+            default: []
+        },
+        beFollowed: {
+            type: [{id: {type: String}, datetime_update: {type: Date, default: Date.now}}],
+            default: []
+        },
+        likeList: {
+            type: [String],
+            default: []
+        },
+        createAt: {
+            type: Date,
+            default: Date.now,
+        },
+        updateAt: {
+            type: Date,
+            default: Date.now,
+        }
     },
     {
         versionKey: false, // 去除__v欄位

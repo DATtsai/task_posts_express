@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const usersController = require('../controller/usersController')
+const { isAuth } = require('../service/auth');
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/sign_up', usersController.sign_up);
+router.post('/login', usersController.login);
+router.patch('/updatePassword', isAuth, usersController.updatePassword);
+router.get('/profile', isAuth, usersController.getProfile);
+router.patch('/profile', isAuth, usersController.updateProfile);
 
 module.exports = router;

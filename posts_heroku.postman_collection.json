@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "8b50246c-f24c-4957-9edd-999af3350631",
 		"name": "hexschool posts heroku",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5050250"
 	},
 	"item": [
 		{
@@ -29,7 +30,13 @@
 			"name": "取得 所有貼文清單",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "https://thawing-plains-53186.herokuapp.com/posts",
 					"protocol": "https",
@@ -81,7 +88,13 @@
 			"name": "刪除 所有貼文",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "https://thawing-plains-53186.herokuapp.com/posts",
 					"protocol": "https",
@@ -101,10 +114,16 @@
 			"name": "新增 貼文",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"user\": \"62741e710b0c853f222d8691\",\n    \"tags\": [\"test\"],\n    \"type\": \"person\",\n    \"content\": \"測試發文\",\n    \"image\": \"https://i.picsum.photos/id/817/200/300.jpg?hmac=Egrlh6ZzXMOSu9esbUDMY8PhK3cBCmeqHyWBXm7dnHQ\"\n}",
+					"raw": "{\n    \"tags\": [\"test\"],\n    \"type\": \"person\",\n    \"content\": \"測試發文\",\n    \"image\": \"https://i.picsum.photos/id/817/200/300.jpg?hmac=Egrlh6ZzXMOSu9esbUDMY8PhK3cBCmeqHyWBXm7dnHQ\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -112,7 +131,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/posts",
+					"raw": "https://thawing-plains-53186.herokuapp.com/post",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -120,7 +139,7 @@
 						"com"
 					],
 					"path": [
-						"posts"
+						"post"
 					]
 				}
 			},
@@ -130,9 +149,15 @@
 			"name": "刪除 單筆貼文",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/post/626d1015dd4d30c1bab3a727",
+					"raw": "https://thawing-plains-53186.herokuapp.com/post/62814113323ee34c0a4a58f8",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -141,7 +166,7 @@
 					],
 					"path": [
 						"post",
-						"626d1015dd4d30c1bab3a727"
+						"62814113323ee34c0a4a58f8"
 					]
 				}
 			},
@@ -151,7 +176,13 @@
 			"name": "編輯 單筆貼文",
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"content\": \"editPost\",\n    \"tags\": [\"edit\"]\n}",
@@ -162,7 +193,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/posts/626d1035dd4d30c1bab3a72c",
+					"raw": "https://thawing-plains-53186.herokuapp.com/post/626d1035dd4d30c1bab3a72c",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -170,8 +201,167 @@
 						"com"
 					],
 					"path": [
-						"posts",
+						"post",
 						"626d1035dd4d30c1bab3a72c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增 (註冊)使用者",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"TAD\",\n    \"email\": \"tad123456789@gmail.com\",\n    \"confirmPassword\": \"1qaz2wsx\",\n    \"password\": \"1qaz2wsx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/users/sign_up",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登入 使用者",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"tad@gmail.com\",\n    \"password\": \"1qaz2wsx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/users/login",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯 使用者密碼",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"1qaz2wsx\",\n    \"confirmPassword\": \"1qaz2wsx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/users/updatePassword",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得 使用者個人資訊",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/users/profile",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯 使用者個人資訊",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"DAT\",\n    \"gender\": \"male\",\n    \"avatar\": \"https://randomuser.me/api/portraits/lego/3.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/users/profile",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
 					]
 				}
 			},
