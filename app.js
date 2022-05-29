@@ -54,6 +54,10 @@ app.use(function(err, req, res, next) {
     err.isOperational = true;
     return resErrorProd(res, err);
   }
+  if(err.statusCode === 401) { // auth未通過錯誤
+    err.isOperational = true;
+    return resErrorProd(res, err);
+  }
   return resErrorProd(res, err);
 });
 
