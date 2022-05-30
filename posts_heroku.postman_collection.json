@@ -28,15 +28,22 @@
 		},
 		{
 			"name": "取得 所有貼文清單",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "https://thawing-plains-53186.herokuapp.com/posts",
 					"protocol": "https",
@@ -91,7 +98,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
@@ -117,7 +124,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
@@ -152,7 +159,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
@@ -179,7 +186,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
@@ -275,7 +282,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
@@ -311,7 +318,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
@@ -338,7 +345,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzE2MjUyNCwiZXhwIjoxNjUzNzY3MzI0fQ.TNvvgdUZcCTck97fqOw7bgHOu1qwEn4sZRQyYvhTAC8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
 						"type": "text"
 					}
 				],
@@ -362,6 +369,42 @@
 					"path": [
 						"users",
 						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "上傳 圖片/取得圖片url Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODkzMGZiYzZmODg5ZTc3YTZiM2U1NSIsImlhdCI6MTY1MzgxNzY0NywiZXhwIjoxNjU2NDA5NjQ3fQ.YMvv_Gr1omIxojIUhlVboPuIH1QwWN5j13GkyaE85vg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/Users/DAT/Downloads/4.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://thawing-plains-53186.herokuapp.com/upload",
+					"protocol": "https",
+					"host": [
+						"thawing-plains-53186",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"upload"
 					]
 				}
 			},
