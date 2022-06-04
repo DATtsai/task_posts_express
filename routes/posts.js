@@ -6,8 +6,8 @@ const router = express.Router();
 router.post('/post', isAuth, postController.createPost);
 router.delete('/post/:postId', isAuth, postController.removePost);
 router.patch('/post/:postId', isAuth, postController.updatePost);
-router.get('/posts', isAuth, postController.getAllPosts);
-router.delete('/posts', isAuth, postController.removePosts);
+router.get('/', isAuth, postController.getAllPosts);
+router.delete('/', isAuth, postController.removePosts);
 router.options('/', (req, res, next) => res.status(200));
 
 module.exports = router;

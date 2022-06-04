@@ -1,3 +1,4 @@
+const { isObjectIdOrHexString } = require('mongoose');
 const Posts = require('../model/postsModel');
 const Users = require('../model/usersModel'); 
 const resHandle = require('../service/resHandle');
@@ -18,9 +19,9 @@ async function createPost(req, res, next) {
 
 async function getAllPosts(req, res, next) {
     console.log(req.query)
-    let { keyword, sortby, s: size = 10, p: page = 1, asc = 0, all } = req.query;
+    let { keyword, sortby = 'datetime_pub', s: size = 10, p: page = 1, asc = 0, all } = req.query;
     let filter = keyword ? { content: new RegExp(keyword) } : {} ;
-    sort = sortby === 'datetime_pub' ? { createAt: +asc === 1 ? 1 : -1 } : {} ;
+    let sort = sortby === 'datetime_pub' ? { createAt: +asc === 1 ? 1 : -1 } : {} ;
     page = +page > 0 ? +page : 1;
     size = +size > 0 ? +size : 10;
 
@@ -58,7 +59,9 @@ async function removePosts(req, res, next) { // 刪除全部
 async function removePost(req, res, next) { // 刪除單筆
     const id = req.params.postId;
     console.log('remove id: ', id);
-
+    if(!isObjectIdOrHexString(id)) {
+        resHandle.appError(400, '沒有此id', next);
+    }
     const posts = await Posts.findByIdAndDelete(id);
     if(posts) {
         resHandle.success(res, posts);
