@@ -19,18 +19,12 @@ async function isAuth(req, res, next) {
     // token解密確認使用者
     const decoded = await new Promise((resolve, reject) => { // 由於jwt.verify並非promise物件，解密會有延遲故需要打包為promise
         jwt.verify(token, process.env.JWT_SECRET, (error, payload) => {
-            if(error) reject(error);
+            if(error) reject(resHandle.appError(401, '登入資訊異常!', next));
             else resolve(payload);
         });
  
     });
-    const user = await Users.findById(decoded.id);
-    if(user) {
-        req.user = user; // 將使用者資訊新增到req上，使其往其他middleware帶
-    }
-    else{
-        resHandle.appError(401, '登入資訊異常!', next);
-    }
+    req.user = { id: decoded.id };
 
     next();
 }   
