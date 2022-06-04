@@ -138,7 +138,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/post",
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts/post",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -146,6 +146,7 @@
 						"com"
 					],
 					"path": [
+						"posts",
 						"post"
 					]
 				}
@@ -164,7 +165,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/post/62814113323ee34c0a4a58f8",
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts/post/62814113323ee34c0a4a58f8",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -172,6 +173,7 @@
 						"com"
 					],
 					"path": [
+						"posts",
 						"post",
 						"62814113323ee34c0a4a58f8"
 					]
@@ -200,7 +202,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/post/626d1035dd4d30c1bab3a72c",
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts/ost/626d1035dd4d30c1bab3a72c",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -208,7 +210,8 @@
 						"com"
 					],
 					"path": [
-						"post",
+						"posts",
+						"ost",
 						"626d1035dd4d30c1bab3a72c"
 					]
 				}
