@@ -202,7 +202,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://thawing-plains-53186.herokuapp.com/posts/ost/626d1035dd4d30c1bab3a72c",
+					"raw": "https://thawing-plains-53186.herokuapp.com/posts/post/626d1035dd4d30c1bab3a72c",
 					"protocol": "https",
 					"host": [
 						"thawing-plains-53186",
@@ -211,7 +211,7 @@
 					],
 					"path": [
 						"posts",
-						"ost",
+						"post",
 						"626d1035dd4d30c1bab3a72c"
 					]
 				}
