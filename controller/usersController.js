@@ -23,6 +23,11 @@ const validate = (type, data, options) => {
             let values = Object.values(data);
             return values.every(item => validator.isEmail(item));
         }
+        case 'regExp': {
+            let values = Object.values(data);
+            let regExp = new RegExp(options, 'g');
+            return values.every(item => item.match(regExp));
+        }
         default:
             console.log('no type for validating!')
             return false;
@@ -38,8 +43,14 @@ async function sign_up(req, res, next) {
     if(!validate('emailFormat', { email })) {
         return resHandle.appError(400, 'email格式不符', next);
     }
+    if(!validate('enoughLength', { userName }, 2)) {
+        return resHandle.appError(400, '暱稱至少2個字', next);
+    }
     if(!validate('enoughLength', { password }, 8)) {
         return resHandle.appError(400, '密碼不得少於8碼', next);
+    }
+    if(!validate('regExp', { password }, '^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$')) {
+        return resHandle.appError(400, '密碼需為英數混合', next);
     }
     if(!validate('confirmPassword', { password, confirmPassword })) {
         return resHandle.appError(400, '密碼不一致', next);
@@ -94,12 +105,13 @@ async function updatePassword(req, res, next) {
 }
 
 async function getProfile(req, res, next) {
-    resHandle.success(res, req.user);
+    const user = await Users.findById(req.user.id);
+    resHandle.success(res, user);
 }
 
 async function updateProfile(req, res, next) {
     let { userName, gender, avatar } = req.body;
-    const user = await Users.findByIdAndUpdate(req.user._id, { userName, gender, avatar });
+    const user = await Users.findByIdAndUpdate(req.user.id, { userName, gender, avatar }, { runValidators: true });
     if(user) {
         resHandle.success(res, {id: user._id, message: 'update profile'});
     }
