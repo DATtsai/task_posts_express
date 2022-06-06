@@ -49,7 +49,7 @@ async function sign_up(req, res, next) {
     if(!validate('enoughLength', { password }, 8)) {
         return resHandle.appError(400, '密碼不得少於8碼', next);
     }
-    if(!validate('regExp', { password }, '^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$')) {
+    if(!validate('regExp', { password }, '^([a-zA-Z]+\\d+|\\d+[a-zA-Z]+)[a-zA-Z0-9]*$')) {
         return resHandle.appError(400, '密碼需為英數混合', next);
     }
     if(!validate('confirmPassword', { password, confirmPassword })) {
