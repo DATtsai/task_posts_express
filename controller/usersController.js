@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const Users = require('../model/usersModel'); 
+const Posts = require('../model/postsModel');
 const resHandle = require('../service/resHandle');
 const { generateJWT } = require('../service/auth');
 
@@ -62,7 +63,7 @@ async function sign_up(req, res, next) {
     const users = await Users.create(user);
     console.log(users);
     let payload = {userId: users._id, email: users.email, userName: users.userName, createAt: users.createAt};
-    resHandle.success(res, payload);
+    return resHandle.success(res, payload);
 }
 
 async function login(req, res, next) {
@@ -78,7 +79,7 @@ async function login(req, res, next) {
     }
     const token = generateJWT(user);
     let payload = {token, userName: user.userName};
-    resHandle.success(res, payload);
+    return resHandle.success(res, payload);
 }
 
 async function updatePassword(req, res, next) {
@@ -97,10 +98,10 @@ async function updatePassword(req, res, next) {
     password = await bcrypt.hash(password, 12);
     const user = await Users.findByIdAndUpdate(userId, {password});
     if(user) {
-        resHandle.success(res, {id: user._id, userName: user.userName, message: 'update password'});
+        return resHandle.success(res, {id: user._id, userName: user.userName, message: 'update password'});
     }
     else {
-        resHandle.appError(400, '沒有此id', next);
+        return resHandle.appError(400, '沒有此id', next);
     }
 }
 
@@ -113,11 +114,91 @@ async function updateProfile(req, res, next) {
     let { userName, gender, avatar } = req.body;
     const user = await Users.findByIdAndUpdate(req.user.id, { userName, gender, avatar }, { runValidators: true });
     if(user) {
-        resHandle.success(res, {id: user._id, message: 'update profile'});
+        return resHandle.success(res, {id: user._id, message: 'update profile'});
     }
     else {
-        resHandle.appError(400, '沒有此id', next);
+        return resHandle.appError(400, '沒有此id', next);
     }
+}
+
+async function toggleFollow(req, res, next) {
+    let userId = req.user.id;
+    let { followId } = req.body;
+
+    const followed = await Users.find({ $and: [{_id: userId}, {'follow.id': followId}] });
+    if(!followed.length) { // 追蹤
+        const userfollow = await Users.findByIdAndUpdate(userId, { $push: { follow: { id: followId } } });
+        const userbefollowed = await Users.findByIdAndUpdate(followId, { $push: { beFollowed: { id: userId } } });
+        if(userfollow && userbefollowed) {
+            return resHandle.success(res, { userId, action: 'follow', followId })
+        }
+    }
+    else { // 取消追蹤
+        const userfollow = await Users.findByIdAndUpdate(userId, { $pull: { follow: { id: followId } } });
+        const userbefollowed = await Users.findByIdAndUpdate(followId, { $pull: { beFollowed: { id: userId } } });
+        if(userfollow && userbefollowed) {
+            return resHandle.success(res, { userId, action: 'unfollow', followId })
+        }
+    }
+    return resHandle.appError(400, '追蹤id輸入有誤', next);    
+}
+
+async function getLikeList(req, res, next) {
+    const userId = req.user.id;
+    let { sortby = 'datetime_pub', s: size = 10, p: page = 1, asc = 0, all } = req.query;
+    let sort = sortby === 'datetime_pub' ? { createAt: +asc === 1 ? 1 : -1 } : {} ;
+    page = +page > 0 ? +page : 1;
+    size = +size > 0 ? +size : 10;
+
+    const user = await Users.findById({_id: userId});
+    const filter = { _id: {$in: user.likeList }};
+    const count = await Posts.find(filter).count();
+    if(all == 1) {
+        size = count;
+        page = 1;
+    }
+    let skip = size * ( page - 1 );
+
+    const posts = await Posts.find(filter).sort(sort).skip(skip).limit(size)
+        .populate({ path: 'user', select: 'userName avatar'})
+        .populate({ path: 'comments', select: 'user comment createAt -post'})
+    let postsData = posts.map((item) => {
+        return {
+            postId: item._id,
+            user: item.user,
+            content: item.content,
+            image: item.image,
+            datetime_pub: item.createAt,
+            comments: item.comments,
+        }
+    });
+    let payload = { count, size, page, posts: postsData };
+    
+    return resHandle.success(res, payload);
+}
+
+async function getFollowingList(req, res, next) {
+    const userId = req.user.id;
+    let { s: size = 10, p: page = 1, all } = req.query;
+    const user = await Users.findById(userId)
+        .populate({ path: 'follow.id', select: 'userName avatar' })
+    let following = user.follow;
+    const count = following ? following.length : 0 ;
+    if(all == 1) {
+        size = count;
+        page = 1;
+    }
+    let skip = size * ( page - 1 );
+    following = following.slice(skip, skip+size);
+    following = following.map((item) => {
+        return {
+            user: item.id,
+            datetime_update: item.datetime_update,
+        }
+    })
+
+    let payload = { count, size, page, following };
+    return resHandle.success(res, payload);
 }
 
 module.exports = {
@@ -125,5 +206,8 @@ module.exports = {
     login: resHandle.handleErrorAsync(login),
     updatePassword: resHandle.handleErrorAsync(updatePassword),
     getProfile: resHandle.handleErrorAsync(getProfile),
-    updateProfile: resHandle.handleErrorAsync(updateProfile)
+    updateProfile: resHandle.handleErrorAsync(updateProfile),
+    toggleFollow: resHandle.handleErrorAsync(toggleFollow),
+    getLikeList: resHandle.handleErrorAsync(getLikeList),
+    getFollowingList: resHandle.handleErrorAsync(getFollowingList),
 };

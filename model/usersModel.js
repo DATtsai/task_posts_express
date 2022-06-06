@@ -27,11 +27,11 @@ const userSchema = mongoose.Schema(
             default: 'notAccess'
         },
         follow: {
-            type: [{id: {type: String}, datetime_update: {type: Date, default: Date.now}}],
+            type: [{id: {type: mongoose.Schema.ObjectId, ref: 'users', required: [true, 'userId無效']}, datetime_update: {type: Date, default: Date.now}}],
             default: []
         },
         beFollowed: {
-            type: [{id: {type: String}, datetime_update: {type: Date, default: Date.now}}],
+            type: [{id: {type: mongoose.Schema.ObjectId, ref: 'users', required: [true, 'userId無效']}, datetime_update: {type: Date, default: Date.now}}],
             default: []
         },
         likeList: {

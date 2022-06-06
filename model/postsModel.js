@@ -4,7 +4,7 @@ const postSchema = mongoose.Schema(
         user: {
             type: mongoose.Schema.ObjectId,
             ref: 'users',
-            required: [true, "使用者資訊未填寫"]
+            required: [true, '使用者資訊未填寫']
         },
         tags: [
             {
@@ -34,21 +34,29 @@ const postSchema = mongoose.Schema(
             required: [true, 'Content 未填寫'],
         },
         likes: {
-            type: Number,
-            default: 0
-        },
-        comments:{
-            type: [{
-                user: {type: mongoose.Schema.ObjectId, ref: 'users', required: [true, '使用者資訊未填寫']}, 
-                message: {type: String, required: [true, '留言不得為白']}
-            }],
+            type: [String],
             default: []
         },
+        // comments:{ // 使用virtual移出成colleciton
+        //     type: [{
+        //         user: {type: mongoose.Schema.ObjectId, ref: 'users', required: [true, '使用者資訊未填寫']}, 
+        //         message: {type: String, required: [true, '留言不得為白']}
+        //     }],
+        //     default: []
+        // },
     },
     {
         versionKey: false, // 去除__v欄位
+        toJSON: {virtuals: true},
+        toObject: {virtuals: true},
     }
 );
+// 建立virtual欄位
+postSchema.virtual('comments', {
+    ref: 'comments', // 指向命名為comments的model
+    foreignField: 'post', // 與comments model內的post欄位
+    localField: '_id', // 使用posts model的_id來與foreignField關聯
+});
 
 const Posts = mongoose.model('posts', postSchema);
 
