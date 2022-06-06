@@ -8,5 +8,8 @@ router.post('/login', usersController.login);
 router.patch('/updatePassword', isAuth, usersController.updatePassword);
 router.get('/profile', isAuth, usersController.getProfile);
 router.patch('/profile', isAuth, usersController.updateProfile);
+router.patch('/follow', isAuth, usersController.toggleFollow);
+router.get('/likeList', isAuth, usersController.getLikeList);
+router.get('/followingList', isAuth, usersController.getFollowingList);
 
 module.exports = router;
